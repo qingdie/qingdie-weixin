@@ -1,0 +1,27 @@
+{
+  "name": "qingdie-weixin",
+  "version": "0.0.1",
+  "description": "node module for weixin",
+  "homepage": "",
+  "author": {
+    "name": "qingdie",
+    "email": "xueping@qingdie.net",
+    "url": "qingdie.github.io"
+  },
+  "main": "index.js",
+  "keywords": [
+    ""
+  ],
+  "eslintConfig": {
+    "extends": "xo-space",
+    "env": {
+      "mocha": true
+    }
+  },
+  "scripts": {
+    "prepublish": "gulp prepublish",
+    "test": "gulp"
+  },
+  "license": "Apache-2.0"
+
+}

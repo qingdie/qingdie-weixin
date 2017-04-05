@@ -1,0 +1,10 @@
+﻿module.exports.auth = require('./lib/auth');
+module.exports.util = require('./lib/util');
+module.exports.jssdk = require('./lib/jssdk');
+module.exports.token = require('./lib/token');
+module.exports.user = require('./lib/user');
+module.exports.tags = require('./lib/tags');
+module.exports.menu = require('./lib/menu');
+module.exports.msg = require('./lib/msg');
+module.exports.pay = require('./lib/pay');
+module.exports.wxapp = require('./lib/wxapp');
