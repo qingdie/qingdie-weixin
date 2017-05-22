@@ -3,7 +3,7 @@
 ```
  var wx = require('qingdie-weixin');
 ```
-# 1.公众号授权验证
+### 1.公众号授权验证
 ```
  this.auth = async (ctx) => {
         if (ctx.method.toLowerCase() === 'get') {
