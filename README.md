@@ -49,3 +49,8 @@ this.auth = async (ctx) => {
         cb();
     });
 ```
+### 3.发送客服消息
+```
+ wx.msg.custom.sendText(config.wxwebconfig.app,'og9V-xFD-CGtdSwkhrC9t0g0anJ0','很高兴通知你，明天放假啦！');
+```
+
