@@ -3,10 +3,13 @@
 ```
  var wx = require('qingdie-weixin');
 ```
-1.公众号授权验证
+# 1.公众号授权验证
+```
  this.auth = async (ctx) => {
         if (ctx.method.toLowerCase() === 'get') {
             var r = wx.token.wxauth(config.wxwebconfig.app.token, ctx.apidata);
             return r ? ctx.apidata.echostr : '';
         } 
     };
+```
+
