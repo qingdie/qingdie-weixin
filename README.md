@@ -25,5 +25,27 @@ this.auth = async (ctx) => {
             return  msg ? wx.util.toXml(msg) : 'success';
         }
     };
-    
+  //注册消息接收监听
+  wx.msg.receive.on(function (msg, cb) {
+        cb({
+            CreateTime: new Date().getTime(),
+            MsgType: 'text',
+            Content: '技术正在熬夜开发，敬请期待！[玫瑰][红包][耶]'
+        });
+    });
+ wx.msg.receive.on('unsubscribe', function (msg, cb) {
+        cb();
+    });
+ wx.msg.receive.on('subscribe', function (msg, cb) {
+        cb({
+            ToUserName: msg.FromUserName,
+            FromUserName: msg.ToUserName,
+            CreateTime: new Date().getTime(),
+            MsgType: 'text',
+            Content: '技术正在熬夜开发，敬请期待！[玫瑰][红包][耶]'
+        });
+    });
+ wx.msg.receive.on('LOCATION', function (msg, cb) {
+        cb();
+    });
 ```
