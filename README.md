@@ -1,7 +1,39 @@
 # qingdie-weixin
-微信公众平台，小程序、微信支付等
+微信公众平台，小程序、App端微信支付等微信提供的所有api接口的node版本实现
+
+微信公众号的acessToken不能总是去获取，现是存储在redis缓存下的
+建议根据需要自己实现存储和获取函数
+
 ```
  var wx = require('qingdie-weixin');
+
+//实现自己的acessToken存储方法
+//不实现默认采用redis进行存储
+wx.token.get=function (id, key, cb) {
+        return new Promise(function (res) {
+		    cb=cb||res;
+            var redis = require("qingdie-redis");
+            redis.get('cache-weixin', function (r) {
+                var c = r && r[id] || (r = {}, r[id] = {});
+                cb && cb(c[key] || null);
+            });
+        });
+ };
+
+ wx.token.set = function (id, key, value, cb) {
+       return new Promise(function (res) {
+		    cb=cb||res;
+            var redis = require("qingdie-redis");
+            redis.get('cache-weixin', function (r) {
+               var c = r && r[id] || (r = {}, r[id] = {});
+               c[key] = value;
+               redis.set('cache-weixin', r);
+               cb && cb();
+            });
+        });
+};
+
+
 ```
 ## 1.授权验证
 ### 1.1公众号服务器身份授权验证
