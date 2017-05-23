@@ -65,27 +65,27 @@ var r = await wx.msg.template.send(config.wxwebconfig.app, {
             "touser": user.wxopenid,
             "miniprogram": {
                 "appid": config.wxsappconfig.app.id,
-                "pagepath":"pages/massmy/orderinfo?id=000"
+                "pagepath":"pages/notice/info?id=000"
             },
             "template_id": templateid,
-            "url": config.domain + '/api.html',
+            "url": config.domain + '/notice.html?id=000',
             "data":  {
-				"first": {
-					"value": "你好啊，明天可以不用来上班啦！",
-					"color": "#173177"
-				},
-				"keyword1": {
-					"value": 100,
-					"color": "#173177"
-				},
-				"keyword2": {
-					"value":'2017-05-23',
-					"color": "#383232"
-				},
-				"remark": {
-					"value": '想知道为什么请点击',
-					"color": "#173177"
-				}
+			"first": {
+				"value": "你好啊，明天可以不用来上班啦！",
+				"color": "#173177"
+			},
+			"keyword1": {
+				"value": 100,
+				"color": "#173177"
+			},
+			"keyword2": {
+				"value":'2017-05-23',
+				"color": "#383232"
+			},
+			"remark": {
+				"value": '想知道为什么请点击',
+				"color": "#173177"
+			}
         }
      });
 
@@ -152,3 +152,5 @@ var  wxuser = await wx.user.info(ctx.app.config.wxwebconfig.app, 'oSyyowCDu_MGuo
 ```
  var wxuser = await wx.wxapp.decryptData(config.wxsappconfig.app, ctx.apidata.session, ctx.apidata.encryptedData, ctx.apidata.iv);
 ```
+
+其他很多很多api请查看源码啦！
