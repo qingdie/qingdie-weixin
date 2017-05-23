@@ -3,7 +3,8 @@
 ```
  var wx = require('qingdie-weixin');
 ```
-### 1.公众号授权验证
+## 1.授权验证
+### 1.1公众号服务器身份授权验证
 ```
  this.auth = async (ctx) => {
         if (ctx.method.toLowerCase() === 'get') {
@@ -11,6 +12,11 @@
             return r ? ctx.apidata.echostr : '';
         } 
     };
+```
+### 1.2jsskd注册
+```
+  var data = await wx.jssdk.jsconfig(ctx.app.config.wxwebconfig.app, ctx.apidata.url);
+
 ```
 ## 2.消息处理
 ### 2.1消息接收和回复
@@ -53,6 +59,37 @@ this.auth = async (ctx) => {
 ```
  wx.msg.custom.sendText(config.wxwebconfig.app,'og9V-xFD-CGtdSwkhrC9t0g0anJ0','很高兴通知你，明天放假啦！');
 ```
+### 2.3 发送模版消息
+```
+var r = await wx.msg.template.send(config.wxwebconfig.app, {
+            "touser": user.wxopenid,
+            "miniprogram": {
+                "appid": config.wxsappconfig.app.id,
+                "pagepath":"pages/massmy/orderinfo?id=000"
+            },
+            "template_id": templateid,
+            "url": config.domain + '/api.html',
+            "data":  {
+				"first": {
+					"value": "你好啊，明天可以不用来上班啦！",
+					"color": "#173177"
+				},
+				"keyword1": {
+					"value": 100,
+					"color": "#173177"
+				},
+				"keyword2": {
+					"value":'2017-05-23',
+					"color": "#383232"
+				},
+				"remark": {
+					"value": '想知道为什么请点击',
+					"color": "#173177"
+				}
+        }
+     });
+
+```
 ## 3.支付
 ### 3.1公众号支付
 ```
@@ -73,7 +110,7 @@ this.auth = async (ctx) => {
             body: order.body,
             attach: order.attach,
             out_trade_no: order.OrderId,
-            total_fee: order.PayThird,
+            total_fee: order.Pay,
             time_start: (new Date(order.AddTime)).format('yyyy-MM-dd-hh-mm-ss').replace(/-/g, ''),
             time_expire:(new Date(new Date(order.AddTime).getTime() + 12 * 60 * 60 * 1000)).format('yyyy-MM-dd-hh-mm-ss').replace(/-/g, '')
         });
@@ -86,12 +123,32 @@ this.auth = async (ctx) => {
             body: order.body,
             attach: order.attach,
             out_trade_no: order.OrderId,
-            total_fee: order.PayThird,
+            total_fee: order.Pay,
             time_start: help.dateFormat(new Date(order.AddTime), 'yyyy-MM-dd-hh-mm-ss').replace(/-/g, ''),
             time_expire: help.dateFormat(new Date(new Date(order.AddTime).getTime() + 12 * 60 * 60 * 1000), 'yyyy-MM-dd-hh-mm-ss').replace(/-/g, '')
         });
 //r 可直接给小程序的skd调用 
 ```
+## 4.用户信息
+### 4.1通过code获取用户信息
+```
+var  wxuser = await wx.user.oauth2(ctx.app.config.wxwebconfig.app, ctx.apidata.code);
+```
+### 4.2url授权地址获取
+```
+  const url = wx.jssdk.jsurl(ctx.app.config.wxwebconfig.app, ctx.apidata.url.split('#')[0]);
+```
+### 4.3根据openid获取用户信息
+```
+var  wxuser = await wx.user.info(ctx.app.config.wxwebconfig.app, 'oSyyowCDu_MGuoEu4maA4T0h7ZL9');
+```
 
+### 4.4小程序根据code换取seesession
+```
+ var ret = await wx.wxapp.jscode2session(ctx.app.config.wxsappconfig.app, ctx.apidata.code);
 
-
+```
+### 4.5小程序解密数据
+```
+ var wxuser = await wx.wxapp.decryptData(config.wxsappconfig.app, ctx.apidata.session, ctx.apidata.encryptedData, ctx.apidata.iv);
+```
