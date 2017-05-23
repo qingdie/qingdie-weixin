@@ -2,7 +2,7 @@
 微信公众平台，小程序、App端微信支付等微信提供的所有api接口的node版本实现
 
 微信公众号的acessToken不能总是去获取，现是存储在redis缓存下的
-建议根据需要自己实现存储和获取函数
+建议根据需要需要自己实现存储和获取函数
 
 ```
  var wx = require('qingdie-weixin');
