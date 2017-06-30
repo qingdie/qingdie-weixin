@@ -7,4 +7,5 @@ module.exports.tags = require('./lib/tags');
 module.exports.menu = require('./lib/menu');
 module.exports.msg = require('./lib/msg');
 module.exports.pay = require('./lib/pay');
+module.exports.qrcode = require('./lib/qrcode');
 module.exports.wxapp = require('./lib/wxapp');

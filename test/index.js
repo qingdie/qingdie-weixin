@@ -1,8 +1,8 @@
 ﻿var api = require("qingdie-weixin");
 var co = require("qingdie-co");
 var wxapp = {
-    id: 'wx17da63753aecf9e7',
-    secret: '2bf125ebd596784321c8d775ecfad267',
+    id: 'wx20fb415546dcdd34',
+    secret: 'dbe664538a9d9cce180b59af7d6b2765',
     token: '2016bc51_A'
 };
 var wxsapp = {
@@ -59,7 +59,7 @@ var wxwebconfig = {
     //wxapp.app = wxsapp;
     //await wxapp.all();
 
-    // pay测试
+    // 二维码测试
     var qrcode = require("./qrcode");
     qrcode.app = wxapp;
     await qrcode.all();

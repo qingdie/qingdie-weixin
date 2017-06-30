@@ -14,5 +14,8 @@ module.exports = new (function () {
             }
         });
         console.log(r);
+        r = api.qrcode.imgurl(r.ticket);
+        console.log(r);
     };
+
 })();
