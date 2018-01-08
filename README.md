@@ -1,5 +1,33 @@
 # qingdie-weixin
 微信公众平台，小程序、App端微信支付等微信提供的所有api接口的node版本实现
+安装：
+```
+npm install qingdie-weixin
+```
+
+配置参数：
+
+```
+  this.wxwebconfig = {
+        app: {
+            name: '公众号',
+            id: 'wxe4cb6ee64656457',
+            secret: 'd6c3fb4be7277aa18bb4',
+            token: 'qdauc2017'
+        },
+        merchant: {
+            id: '1487762830',
+            key: '1c61291cb07f025cd01d7bf8c70f7e28'
+        },
+        certificate: {
+            pkcs12: './res/1487762830.p12',
+            key: '1487762830'
+        },
+        wxnotifyUrl: this.domain + '/api/pay/wxnotify'
+    };
+
+```
+
 
 微信公众号的acessToken不能总是去获取，现是存储在redis缓存下的
 建议根据需要需要自己实现存储和获取函数
