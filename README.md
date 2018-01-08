@@ -8,7 +8,7 @@ npm install qingdie-weixin
 配置参数：
 
 ```
-  this.wxwebconfig = {
+  this.wxconfig = {
         app: {
             name: '公众号',
             id: 'wxe4cb6ee64656457',
