@@ -95,11 +95,11 @@ this.auth = async (ctx) => {
 this.msg = async (ctx) => {
        var appid=ctx.path.substring(12);
        var wxconfig = await serviceAdminUser.getWxconfig(appid);//根据appid获取配置
-       if (!wx.util.checksign(wxconfig.component.token, ctx.query.timestamp, ctx.query.nonce, ctx.query.signature)) return { errmsg: '签名错误' };
-        var data = await wx.util.toJson(ctx.apidata);
-        var ret = wx.util.decryptData(config.wx.component.encodingAesKey, data.Encrypt);//解密消息
+       if (!wx.util.checksign(wxconfig.app.component.token, ctx.query.timestamp, ctx.query.nonce, ctx.query.signature)) return { errmsg: '签名错误' };
+       var data = await wx.util.toJson(ctx.apidata);
+        var ret = wx.util.decryptData(wxconfig.app.component.encodingAesKey, data.Encrypt);//解密消息
         var msg = await wx.msg.receive.onXml(ret.xml, wxconfig);//消息处理
-        return msg ? wx.util.xmlEncry(wxconfig.component.appid, wxconfig.component.encodingAesKey, wx.util.toXml(msg)) : 'success';
+        return msg ? wx.util.xmlEncry(wxconfig.app.component.appid, wxconfig.app.component.encodingAesKey, wx.util.toXml(msg)) : 'success';
 }
 //注册消息接收监听
 wx.msg.receive.on((msg, opt)=> {
