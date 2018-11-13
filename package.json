@@ -1,24 +1,29 @@
 {
   "name": "qingdie-weixin",
-  "version": "0.0.1",
+  "version": "1.1.7",
   "description": "node module for weixin",
   "homepage": "https://qingdie.github.io",
-  "author": {
-    "name": "qingdie",
-    "email": "xueping@qingdie.net",
-    "url": "https://qingdie.github.io"
-  },
+  "author": "qingdie <xueping@qingdie.net> (https://qingdie.github.io)",
   "main": "index.js",
-  "keywords": [
-    ""
-  ],
-  "scripts": {
-    "prepublish": "gulp prepublish",
-    "test": "gulp"
-  },
+  "keywords": [],
   "license": "Apache-2.0",
   "dependencies": {
-    "xml2js": "~0.4.17"
-
+    "xml2js": "~0.4.17",
+    "request": "~2.83.0",
+    "crypto": "~1.0.1"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qingdie/qingdie-weixin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/qingdie/qingdie-weixin/issues"
   }
 }

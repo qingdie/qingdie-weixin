@@ -9,3 +9,4 @@ module.exports.msg = require('./lib/msg');
 module.exports.pay = require('./lib/pay');
 module.exports.qrcode = require('./lib/qrcode');
 module.exports.wxapp = require('./lib/wxapp');
+module.exports.network = require('./lib/network');

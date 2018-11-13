@@ -1,32 +1,43 @@
 ﻿var api = require("qingdie-weixin");
 var co = require("qingdie-co");
-var wxapp = {
-    id: 'wx20fb415546dcdd34',
-    secret: 'dbe664538a9d9cce180b59af7d6b2765',
-    token: '2016bc51_A'
-};
-var wxsapp = {
-    id: 'wxc23c6240c01eeedb',
-    secret: '88dc98de63d7618b31c8058327108cc3'
-};
-var wxwebconfig = {
-    app: {
-        id: 'wx90d71a0b18c5fa45',
-        secret: '685e1a3ba1448c18353ede1823e3f175',
-        token: 'lyhunjie8991'
-    },
-    merchant: {
-        id: '1326907501',
-        key: '685e1a3ba1448c18353ede1823e3f145'
-    },
-    certificate: {
-        pkcs12: './node_modules/qingdie-weixin/test/cert/apiclient_cert.p12',
-        key: '1326907501'
-    },
-    wxnotifyUrl: 'http://wx.qingdie.net/api/weixin/notify'
-};
+//微信配置文件说明：
 
-(async function () {
+//建议程序配置文件统一放在global.config下
+//token是存放在redis下的，做了分布式锁处理，
+global.config = {
+    wxwebconfig: {
+        app: { //公众号、小程序、app配置信息
+            id: 'wx90d71a00b00000000', //
+            secret: '68361a3ba1448c18353ede1823e3f175',
+            token: 'ly34343ie8992',
+            component: { //第三方授权信息，代公众号开发业务
+                appid: "wx36890250000000",
+                appSecret: "c0311afa9a2cae342000000000000",
+                encodingAesKey: "1b30c5613f5849c99b73a8ee4767000000000000",
+                token: "0000000",
+                domain: "xxxxxxxxxx.com"
+            }
+        },
+        merchant: { //商户信息
+            id: '1326907509',
+            key: '685e1a3ba1441835333ede1823e3f145'
+        },
+        certificate: { //证书信息
+            pkcs12: '/apiclient_cert.p12',
+            key: '1326907509'
+        },
+        wxnotifyUrl: 'http://wx.qingdie.net/api/weixin/notify'
+    },
+    redis: { //redis配置
+        host: '118.190.149.345',
+        password: '435454',
+        port: 6379,
+        db: 4,
+        md5: true
+    }
+}
+var wxapp = config.wxwebconfig.app;
+(async function() {
     ////标签测试
     //var tags = require("./tags");
     //tags.app = wxapp;
